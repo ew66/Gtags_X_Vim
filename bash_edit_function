@@ -1,0 +1,68 @@
+# /*
+#  * xvim - Automator to find and open the src files using GNU global tags.
+#  *
+#  * Copyright (C) 2014 Edgar C.Y. Wang & Howrd T.H. Chung & Ferry C.H. Chen
+#  * xxxxyyyyy409@gmail.com & howard721206@gmail & c.c.hsien@gmail.com
+#  *
+#  * This file is released under the GPL v2.
+#  */
+
+function xvim()
+{
+    unset target
+    while read -r line
+    do
+        path_line=`echo $line|cut -d' ' -f3`
+        num=`echo $line|cut -d' ' -f2`
+        target+=($(echo "$path_line":"$num" ))
+    done <<< "$(global -x $1)"
+#	echo ${#target[@]}
+	genSelectList ${target[@]}
+}
+
+function xgrep()
+{
+    unset target
+	echo $@
+#	echo "$(grep -n $@)"
+#	return
+    while read -r line
+    do
+        path_line=`echo $line|cut -d':' -f1`
+        num=`echo $line|cut -d':' -f2`
+		info=`echo $line|cut -d':' -f3-`
+#		echo $info
+        target+=($(echo "$path_line":"$num":"$info" ))
+        #target+=($(echo $line ))
+    done <<< "$(grep -n $@)"
+#	echo ${target[@]}
+	genSelectList ${target[@]}
+}
+
+function genSelectList()
+{
+	unset target
+#	echo $@
+	target=("$@")
+#	echo ${#target[@]}
+#	return
+    if [ ${#target[@]} -gt 1 ];then
+         echo "more than 1 source, choose 1:"
+         select chooseID in ${target[@]}; do
+             case $chooseID in
+                 * )
+                     targetPath=$chooseID
+                     break;;
+             esac
+         done
+     elif [ ${#target[@]} -eq 1 ]; then
+       echo ${target[0]}
+         targetPath=${target[0]}
+     elif [ ${#adbDevices[@]} -eq 0 ]; then
+         echo "no such file."
+     fi
+    
+    path=`echo $targetPath|cut -d':' -f1`
+    num=`echo $targetPath|cut -d':' -f2`
+    vim +$num $path
+}
