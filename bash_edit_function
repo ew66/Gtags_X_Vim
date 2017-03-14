@@ -14,6 +14,8 @@ function xvim()
     # if using global -r for searching refferenced pattern
     if [ $1 == '-r' ];then
         global_cmd="global -rx $2"
+    elif [ $1 == '-s' ];then
+        global_cmd="global -sx $2"
     fi
     eval global_cmd='$('$global_cmd')'
     while read -r line
