@@ -104,5 +104,9 @@ function genSelectList()
     ##num=`echo $targetPath|cut -d':' -f2`
     tpath=`(echo $targetPath) | (cut -d':' -f1)`
     num=`(echo $targetPath) | (cut -d':' -f2)`
-    $editor +$num $tpath
+    if [ "$editor" = "code" ];then
+      $editor -g $tpath:$num
+    else
+      $editor +$num $tpath
+    fi
 }
