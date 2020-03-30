@@ -1,8 +1,23 @@
 # Gtags_X_Vim
+
 automated vim the file and jump to the location of the function you want to see 
 
+## bash
+
 1. Put bash_edit_function to your HOME directory.
-  e.g. cp bash_edit_function ~/.bash_edit_function
-2. Edit your ~/.bashrc then source ~/.bash_edit_function in it.
-  e.g. source ~/.bash_edit_function
+
+`cp bash_edit_function ~/.bash_edit_function`
+  
+2. Edit your ~/.bashrc then add `source ~/.bash_edit_function` in it.
+
+`echo "source ~/.bash_edit_function" >> ~/.bashrc`
+
+## zsh
+
+1. Put zsh_edit_function to your HOME directory.
+
+  `cp zsh_edit_function ~/.zsh_edit_function`
+  
+2. Edit your ~/.zsh_rc then add `source ~/.zsh_edit_function` in it.
+  `echo "source ~/.bash_edit_function" >> ~/.zshrc`
 
