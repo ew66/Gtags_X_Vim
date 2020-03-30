@@ -2,7 +2,8 @@
 
 automated vim the file and jump to the location of the function you want to see 
 
-## bash
+## Installation
+### bash
 
 1. Put bash_edit_function to your HOME directory.
 
@@ -12,7 +13,7 @@ automated vim the file and jump to the location of the function you want to see
 
 `echo "source ~/.bash_edit_function" >> ~/.bashrc`
 
-## zsh
+### zsh
 
 1. Put zsh_edit_function to your HOME directory.
 
@@ -20,4 +21,21 @@ automated vim the file and jump to the location of the function you want to see
   
 2. Edit your ~/.zsh_rc then add `source ~/.zsh_edit_function` in it.
   `echo "source ~/.bash_edit_function" >> ~/.zshrc`
+  
+## Usage
+### vscode
+`gcode [global parameters]`
+
+e.g.
+  - `gcode ClassABC`
+  - `gcode -r methodABC`
+  - `gcode -s VariableABC`
+  
+### vim
+`xvim [global parameters]`
+
+e.g.
+  - `xvim ClassABC`
+  - `xvim -r methodABC`
+  - `xvim -s VariableABC`
 
